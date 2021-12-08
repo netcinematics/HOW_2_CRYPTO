@@ -4,12 +4,14 @@
 - and https://wizard.openzeppelin.com
 These are instructions for Startup of existing or 
 creation of a new CRYPTO-PROJECT.
-> STARTUP: 
-- compile, start ganache, migrate, exec...
+## STARTUP: 
+- compile, ganache, migrate, exec, test,
 > npm install
 > npx truffle compile
 > npx ganache-cli --deterministic 
 > npx truffle migrate --network development
+> npx truffle exec --network development ./scripts/index.js
+> npx truffle test
 ----
 ## 1) Build a CRYPTO-SCAFFOLD:
 ----
@@ -117,3 +119,12 @@ MAX ANNOTATED EXAMPLES in /contracts
 ## 9) UNIT-TESTS ( chai.js)
 ----
 > npm install --save-dev chai
+- /tests mirror /contracts 1 to 1.
+> create test/BASIC_oz.test.js
+> npx truffle test
+----
+## 10) OZ TEST-HELPERS ( complex assertions )
+----
+> npm install --save-dev @openzeppelin/test-helpers
+- EXTRAs like
+- veryify revert, exact balances, events emitted.
