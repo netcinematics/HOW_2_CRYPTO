@@ -128,3 +128,5 @@ MAX ANNOTATED EXAMPLES in /contracts
 > npm install --save-dev @openzeppelin/test-helpers
 - EXTRAs like
 - veryify revert, exact balances, events emitted.
+// const { BN, expectEvent, expectRevert } = require('@openzeppelin/test-helpers');
+- EXAMPLES: https://github.com/OpenZeppelin/openzeppelin-test-helpers/tree/master/test/src
