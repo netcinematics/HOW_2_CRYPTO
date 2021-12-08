@@ -1,0 +1,21 @@
+{
+  "name": "how_2_crypto",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "crypto",
+    "blockchain",
+    "ethereum"
+  ],
+  "author": "spazeFalcon",
+  "license": "MIT",
+  "description": "how to crypto from zero",
+  "devDependencies": {
+    "@openzeppelin/contracts": "^4.4.0",
+    "ganache-cli": "^6.12.2",
+    "truffle": "^5.4.23"
+  }
+}
