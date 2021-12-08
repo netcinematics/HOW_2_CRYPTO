@@ -2,6 +2,14 @@
 - this doc is a walkthrough - from zero to crypto.
 - derived from https://docs.openzeppelin.com/learn/
 - and https://wizard.openzeppelin.com
+These are instructions for Startup of existing or 
+creation of a new CRYPTO-PROJECT.
+> STARTUP: 
+- compile, start ganache, migrate, exec...
+> npm install
+> npx truffle compile
+> npx ganache-cli --deterministic 
+> npx truffle migrate --network development
 ----
 ## 1) Build a CRYPTO-SCAFFOLD:
 ----
@@ -105,3 +113,7 @@ MAX ANNOTATED EXAMPLES in /contracts
 // console.log('State value is', value.toString());
 - CALL TRANSACTION
 // await _basic_oz.store(23);
+----
+## 9) UNIT-TESTS ( chai.js)
+----
+> npm install --save-dev chai
