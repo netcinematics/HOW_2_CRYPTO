@@ -1,9 +1,15 @@
 #HOW_TO_CRYPTO!
-- this doc is a walkthrough - from zero to crypto.
+- go from zero to crypto, in this
+OPENZEPPELIN walkthrough, and STUDY of 
+Smart Contract Development Best Practices.
 - derived from https://docs.openzeppelin.com/learn/
 - and https://wizard.openzeppelin.com
-These are instructions for Startup of existing or 
-creation of a new CRYPTO-PROJECT.
+INDEX: 
+- STARTUP of existing CRYPTO-PROJECT, 
+- CRYPTO-PROJECT, scaffold from scratch,
+- ERC721 Standard.
+- ADVANCED ASSERTIONS
+----
 ## STARTUP: 
 - compile, ganache, migrate, exec, test,
 > npm install
@@ -132,5 +138,159 @@ MAX ANNOTATED EXAMPLES in /contracts
 - EXAMPLES: 
 - https://github.com/OpenZeppelin/openzeppelin-test-helpers/tree/master/test/src
 ----
-## 11) complex assertions ( notes )
+## 11) ERC20, ERC721, ERC1155 ( standards )
 ----
+###ERC20
+###ERC721
+- MINIMUM interface for SMARTCONTRACTS 
+- managed, owned, traded - TOKENS.
+- unrestricted functions and metadata(!)
+- multiple optional packages.
+LINK:https://eips.ethereum.org/EIPS/eip-721
+ERC721 is ERC165 - NFT deed w/ unique ID. uint256
+> event Transfer - ownership transfer: created, distroyed
+> event Approval - set approved address
+> event ApprovalForAll - operator enabled, disabled, management.
+> fn balanceOf - num NFTs owned by _owner
+> fn ownerOf - _owner address
+> fn safeTransferFrom - nft new _owner address confirm receiver.
+> fn safeTransferFrom - additional data param
+> fn transferFrom - unsafe caller nft ready 'to' assumed.
+> fn approve - approved controller address, payable
+> fn setApprovalForAll - authorized operators
+> fn getApproved - get approved address
+> fn isApprovedForAll -is authorized operator?
+ERC165, supportsInterface - wallet interface, safe trans
+> ERC721TokenReceiver - after transfer receipt, allows transfer.
+> onERC721Received - receipt hash
+*ERC721Metadata (optional) - name and details
+> fn name
+> fn symbol
+> fn tokenURI - ipfs, metadata schema
+*ERC721Enumerable (optional)
+- incremental and discoverable (full list)
+> fn totalSupply - count of nfts tracked
+> fn tokenByIndex - enum item
+> fn tokenByOwnerIndex - all assigned to _owner
+> *ERC721URIStorage (optional)
+ERC721 is Context,IERC721,IERC721Metadata
+> tokenId - must exist to verify allowed
+> fn name
+> fn symbol
+> fn tokenURI
+> fn _baseURI
+> fn _safeTransfer - emit transfer event
+> fn _exists
+> fn _isApprovedOrOwner
+> fn _safeMint
+> fn _safeMint
+> fn _mint
+> fn _burn
+> fn _transfer
+> fn _approve - allows transfer, if not from
+> fn _setApprovalForAll
+> fn _checkOnERC721Received
+> fn _beforeTokenTransfer
+###ERC721-OPENZEPPELIN
+LINK: https://docs.openzeppelin.com/contracts/4.x/api/token/erc721
+- INTERFACES, CONTRACTS, UTILITIES.
+- Unopinion, Opinion: ERC721PresetMinterPauserAutoId
+> IERC721 - required to be ERC721 compliant.
+> IERC721Metadata *
+> IERC721Enumerable *
+> IERC721Receiver - prevent locked tokens (verify receiver)
+> ERC721Pausable - pause transfer
+> ERC721Burnable - destroy
+####CORE IERC721
+> event Transfer
+> event Approval
+> event ApprovalForAll
+> fn balanceOf(owner), fn ownerOf(tokenId)
+> fn safeTransferFrom(data), fn transferFrom
+> fn approve - owner or operator
+> fn getApproved - emits Approval Event 
+> fn setApprovalForAll, operator transfer
+> fn isApprovedForAll, is operator allowed.
+####IERC165 - supportsInterface
+####IERC721Metadata
+> name, symbol, tokenURI
+####IERC721Enumerable
+> totalSupply - total tokens
+> tokenOfOwnerByIndex - tokenId by _owner at index
+- use with balanceOf to enumerate all of owners tokens
+- TODO similar mechanism to enumerate all creator tokens
+> tokenByIndex - tokenID at Index
+- use with totalSupply to enum all tokens.
+##ERC721
+constructor(name_, symbol_)
+supportsInterface(interfaceId)
+balanceOf(owner)
+ownerOf(tokenId)
+name()
+symbol()
+tokenURI(tokenId)
+_baseURI()
+approve(to, tokenId)
+getApproved(tokenId)
+setApprovalForAll(operator, approved)
+isApprovedForAll(owner, operator)
+transferFrom(from, to, tokenId)
+safeTransferFrom(from, to, tokenId)
+safeTransferFrom(from, to, tokenId, _data)
+_safeTransfer(from, to, tokenId, _data)
+> _exists(tokenId) - tokenId exists? mint, exist, burn.
+> _isApprovedOrOwner(spender, tokenId) - spender allowed?
+> _safeMint(to, tokenId) - must be receiver
+_safeMint(to, tokenId, _data)
+> _mint(to, tokenId) - unsafe use _safeMint
+_burn(tokenId)
+_transfer(from, to, tokenId)
+_approve(to, tokenId)
+_setApprovalForAll(owner, operator, approved)
+> _beforeTokenTransfer(from, to, tokenId)
+> HOOKS - called before and after (simplifies override)
+> hook into original behavior - so far the only one!
+- Rules of Hooks
+> virtual, always call parent hook using super.
+####ERC721Enumerable 
+####ERC721Receiver
+####ERC721Pausable - freezing all transfers.
+> _beforeTokenTransfer - becomes pausible
+> event Paused
+> event Unpaused
+> fn paused, _pause, _unpause
+####ERC721Burnable
+####ERC721URIStorage
+> fn tokenURI
+> fn setTokenURI
+> fn burn
+####ERC721PresetMinterPauserAutoId (opinion)
+- Roles with AccessControl
+- ROLES: ADMIN_ROLE, MINTER_ROLE, PAUSER_ROLE 
+TODO: (CREATOR_ROLE)
+- Deployer granted minter and pauser
+TODO: look to make this creator role.
+- ACCESS CONTROL
+> fn getRoleMember
+> fn getRoleMemberCount
+> fn _grantRole
+> fn _revokeRole
+> fn hasRole
+> fn _checkRole
+> events roleChange, RoleGranted, RoleRevoked
+###UTILITIES
+###ERC721Holder
+> fn onERC721Received.
+
+###ERC1155
+
+#CRYPTO-USE-CASES
+###ERC721
+- UNIQUE TOKENS.
+- transfer and track
+- sell token: 
+- auction, english, dutch
+- buy token:
+- ownership in wallet
+- operators: brokers/auctioneers (consignment)
+- Physical, Virtual, Negative
